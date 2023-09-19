@@ -65,6 +65,9 @@ try:
     else:
         streamlit.write('Would you like to add ', add_my_fruit, '?')
 
+except URLError as e:
+    streamlit.error()
+
 if streamlit.button('Add a Fruit to the list'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     back_from_function = insert_row_snowflake(add_my_fruit)
